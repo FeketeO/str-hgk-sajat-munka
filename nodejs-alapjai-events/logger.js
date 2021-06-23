@@ -1,6 +1,6 @@
-const { Eventmitter } = require('events')
+const { EventEmitter } = require('events')
 
-class Logger extends Eventmitter {
+class Logger extends EventEmitter {
   succes (msg) {
     console.log('\x1b[32m', msg)
   }

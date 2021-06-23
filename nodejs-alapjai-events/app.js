@@ -1,5 +1,5 @@
 const { Logger } = require('./logger')
-const { createReadStream, createWriteStream } = require('fs')
+const { createReadStream, createWriteStream, rename } = require('fs')
 const { join } = require('path')
 
 const logger = new Logger()
@@ -21,12 +21,15 @@ readStream.on('string', (chunk) => {
   const CapitalizeString = chunk.split('').map(item => capitalizeFirstLetter(item)).join('')
   logger.succes('File has been transformed successfully')
   console.log(CapitalizeString)
+    .catch((err) => console.log('\x1b[31m', err.message))
 })
+
 
 logger.emit('string', readStream)
 
 // write the target file
 
 const writeStream = createWriteStream(targetPath)
+
 
 readStream.pipe(writeStream)
