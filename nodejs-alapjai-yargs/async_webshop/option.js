@@ -4,7 +4,7 @@ const Option = ({ alias, describe, type = 'number', demandOption = 'true' } = {}
 
 const id = Option({
   alias: 'i',
-  describe: 'Product ID',
+  describe: 'Product ID'
 })
 
 const name = Option({
