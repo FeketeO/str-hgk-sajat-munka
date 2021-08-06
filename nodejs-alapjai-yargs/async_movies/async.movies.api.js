@@ -2,7 +2,7 @@
 const { readFile, writeFile } = require('fs').promises
 
 const MoviesApi = (path, prop) => ({
- async get () {
+  async get () {
     const dataString = await readFile(path)
     return JSON.stringify(dataString)[prop]
   },

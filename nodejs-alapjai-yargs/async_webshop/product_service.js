@@ -1,16 +1,31 @@
 
 const ProductService = async (productsApi) => {
-  let poducts = await productsApi.get()
+  const products = await productsApi.get()
 
-  
-
-  return {
-    getAllMovies,
-    findMovieById,
-    createMovie,
-    editMovie,
-    removeMovie
+  const sum = async () => {
+    let sumPriceAndCount = 0
+    await products.map(product => {
+      sumPriceAndCount += product.price * product.count
+    })
+    return sumPriceAndCount
+  }
+  const avg = async () => {
+    let allItemPrice = 0
+    await products.forEach(product => {
+      allItemPrice += product.price
+    })
+    return allItemPrice / products.length
   }
 
+  const lessthan = async (count) => {
+    return await products.filter(product => product.count < count)
+  }
 
-module.exports = Object.freeze(MoviesService)
+  return {
+    sum,
+    avg,
+    lessthan
+  }
+}
+
+module.exports = Object.freeze(ProductService)
